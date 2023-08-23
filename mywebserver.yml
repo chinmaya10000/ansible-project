@@ -14,7 +14,7 @@
       state: started
     when: ansible_os_family =="Debian"
   - name: I want install httpd on amazon linux
-    yum:
+    ansible.builtin.dnf:
       name: httpd
       state: present
     when: ansible_os_family =="RedHat"
