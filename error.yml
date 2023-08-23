@@ -6,14 +6,17 @@
     apt:
       name: git
       state: present 
-    tags: mygit
+    
   - name: Install tree 
     apt:
       name: tree 
       statee: present 
-    tags: mytree
+    ignore_errors: yes
   - name: Install wget
     apt:
       name: wget
       state: present 
-    tags: mywget
+
+
+# If 2nd task is fail then don't stop the playbook, exucute 3rd task
+    
