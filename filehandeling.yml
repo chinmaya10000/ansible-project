@@ -8,4 +8,11 @@
       name: apache2
       state: present 
 
+  - name: copy dynamic file into nodes
+    template:
+      src: mydynoindex.j2
+      dest: /var/www/html/index.html
+
+
+
 # While executng this playbook we can declare other playbook tasks.
