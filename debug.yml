@@ -1,0 +1,11 @@
+---
+- hosts: 172.31.14.172
+  become: yes
+  tasks:
+  - name: I want execute linux command
+    command: hostname -f 
+    register: myfirsttasksresult
+
+  - name: I want display first tasks result 
+    debug:
+      msg: "{{myfirsttasksresult}}"
