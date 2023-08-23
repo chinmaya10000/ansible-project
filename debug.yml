@@ -9,3 +9,15 @@
   - name: I want display first tasks result 
     debug:
       msg: "{{myfirsttasksresult}}"
+
+  - name: Install git
+    apt:
+      name: git
+      state: present 
+    when: myfirsttasksresult.stderr ==""
+
+  - name: Install tree 
+    apt: 
+      name: tree 
+      state: present 
+    when: myfirsttasksresult.stderr !=""
