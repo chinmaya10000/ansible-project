@@ -1,6 +1,6 @@
 ---
 - hosts: 172.31.14.172
-  beccome: yes
+  become: yes
   tasks:
   - include: myfile.yml
   - name: Install apache2
