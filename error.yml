@@ -10,16 +10,10 @@
   - name: Install tree 
     apt:
       name: tree 
-      state: present 
+      statee: present 
     tags: mytree
   - name: Install wget
     apt:
       name: wget
       state: present 
     tags: mywget
-
-
-# ansible-playbook -i myhosts tags.yml --tag="mytree"
-# Install perticular package
-# ansible-playbook -i myhosts tags.yml --skip-tag="mytree"
-# tree package is skip and other package are installed
