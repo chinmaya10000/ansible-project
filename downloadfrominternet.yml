@@ -1,0 +1,9 @@
+---
+- hosts: mywebservers
+  become: yes
+  tasks:
+  - name: Download internet file
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.12/bin/apache-tomcat-10.1.12.tar.gz
+      dest: /home/chinu/apache-tomcat-10.1.12.tar.gz
+      force_basic_auth: yes
