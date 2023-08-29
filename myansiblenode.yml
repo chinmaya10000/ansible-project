@@ -1,0 +1,18 @@
+--- 
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: create ansible nodes
+    ec2:
+      key_name: jenkins-25may
+      instance_type: t2.micro
+      image: ami-01309f7f4091d7055
+      wait: yes
+      region: us-east-2
+      group: jenkins-sg
+      count: 2
+      vpc_subnet_id: subnet-0c5727901bd94a3fb
+      assign_public_ip: yes
+
+      instance_tags:
+        Name: AnsibleNode

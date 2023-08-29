@@ -4,3 +4,5 @@
     url: https://maha24may23.s3.us-east-2.amazonaws.com/gameoflife.war
     dest: /opt/tomcat/webapps/gameoflife.war
     force_basic_auth: yes
+    url_username: admin
+    url_password: chinu
