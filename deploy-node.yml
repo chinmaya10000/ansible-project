@@ -17,6 +17,8 @@
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
-     src: /home/chinu/ansible-project/simple-nodejs
+     src: /home/chinu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
      dest: /home/chinu
+  
+     
   
