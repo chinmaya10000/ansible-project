@@ -12,35 +12,21 @@
      - nodejs
      - npm
 
-- name: Create new Linux user for node app 
-  hosts: 172.31.20.233
-  become: yes
-  tasks:
-  - name: Create group 
-    group:
-     name: devops
-     state: present 
-  - name: Create linux user 
-    user: 
-     name: chinu
-     comment: devops engineer
-     group: devops   
-
 - name: Deploy nodejs app 
   hosts: 172.31.20.233
-  become: True 
+  become: yes 
   become_user: chinu 
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
      src: /home/ubuntu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
-     dest: /home/chinu
+     dest: /home/ubuntu
   - name: Install Dependencies
     npm:
-     path: /home/chinu/package
+     path: /home/ubuntu/package
   - name: Start the application
     command:
-     chdir: /home/chinu/package/app
+     chdir: /home/ubuntu/package/app
      cmd: node server
     async: 1000
     poll: 0
