@@ -1,21 +1,19 @@
 --- 
 - name: Install node and npm
-  hosts: 172.31.20.233
+  hosts: 172.31.5.12
+  become: yes
   tasks:
-  - name: Update apt repo and cache
-    become: yes 
+  - name: Update apt repo and cache 
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   - name: Install nodejs and npm
-    become: yes
     apt:
      pkg:
      - nodejs
      - npm
 
 - name: Deploy nodejs app 
-  hosts: 172.31.20.233
+  hosts: 172.31.5.12
   become: yes 
-  become_user: chinu 
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
