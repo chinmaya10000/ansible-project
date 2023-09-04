@@ -9,26 +9,37 @@
     apt:
      pkg:
      - nodejs
-     - npm 
+     - npm
+
+- name: Create new Linux user for node app 
+  hosts: 172.31.20.233
+  become: yes
+  tasks:
+  - name: Create linux user 
+    user: 
+     name: chinu
+     comment: devops engineer
+     group: devops   
 
 - name: Deploy nodejs app 
   hosts: 172.31.20.233
-  become: yes
+  become: true 
+  become_user: chinu 
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
      src: /home/ubuntu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
-     dest: /home/ubuntu 
+     dest: /home/chinu
   - name: Install Dependencies
     npm:
-     path: /home/ubuntu/package
+     path: /home/chinu/package
   - name: Start the application
     command:
-     chdir: /home/ubuntu/package/app
+     chdir: /home/chinu/package/app
      cmd: node server
     async: 1000
     poll: 0
   - name: Ensure app is running
     shell: ps aux | grep node
     register: app_status
-  - debug: msg={{app_status}}
+  - debug: msg={{app_status.stdout_lines}}
