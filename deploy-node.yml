@@ -19,6 +19,15 @@
     unarchive:
      src: /home/chinu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
      dest: /home/chinu
+  - name: Install Dependencies
+    npm:
+     path: /home/chinu/package
+  - name: Start the application
+    command:
+     chdir: /home/chinu/package/app
+     cmd: node server
+    async: 1000
+    poll: 0
   
      
   
