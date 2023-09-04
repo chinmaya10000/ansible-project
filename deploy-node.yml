@@ -19,3 +19,10 @@
     unarchive:
      src: /home/ubuntu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
      dest: /home/ubuntu 
+  - name: Install Dependencies
+    npm:
+     path: /home/ubuntu/package
+  - name: Start the application
+    command:
+     chdir: /home/ubuntu/package
+     cmd: node server
