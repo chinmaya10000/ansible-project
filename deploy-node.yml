@@ -25,4 +25,4 @@
   - name: Start the application
     command:
      chdir: /home/ubuntu/package/app
-     cmd: node server.js
+     cmd: node server
