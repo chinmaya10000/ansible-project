@@ -1,11 +1,12 @@
 --- 
 - name: Install node and npm
   hosts: 172.31.20.233
-  become: yes
   tasks:
-  - name: Update apt repo and cache 
+  - name: Update apt repo and cache
+    become: yes 
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   - name: Install nodejs and npm
+    become: yes
     apt:
      pkg:
      - nodejs
@@ -29,7 +30,6 @@
   hosts: 172.31.20.233
   become: yes 
   become_user: chinu 
-  become_exe: sudo  # Specify the sudo executable here
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
