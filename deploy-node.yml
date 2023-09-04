@@ -13,7 +13,8 @@
 
 - name: Deploy nodejs app 
   hosts: 172.31.5.12
-  become: yes 
+  become: true
+  become_user: chinu
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
