@@ -26,3 +26,5 @@
     command:
      chdir: /home/ubuntu/package/app
      cmd: node server
+    async: 1000
+    poll: 0
