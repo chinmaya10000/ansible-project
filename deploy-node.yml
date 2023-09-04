@@ -15,6 +15,10 @@
   hosts: 172.31.20.233
   become: yes
   tasks:
+  - name: Create group 
+    group:
+     name: devops
+     state: present 
   - name: Create linux user 
     user: 
      name: chinu
