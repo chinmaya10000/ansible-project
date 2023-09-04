@@ -29,6 +29,7 @@
   hosts: 172.31.20.233
   become: yes 
   become_user: chinu 
+  become_exe: sudo  # Specify the sudo executable here
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
