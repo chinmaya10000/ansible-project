@@ -27,7 +27,7 @@
 
 - name: Deploy nodejs app 
   hosts: 172.31.20.233
-  become: true 
+  become: yes 
   become_user: chinu 
   tasks: 
   - name: Unpack the nodejs file
