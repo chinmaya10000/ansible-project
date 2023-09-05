@@ -58,10 +58,12 @@
       path: /opt/nexus
       state: directory
       owner: nexus
+      group: nexus
       recurse: yes
   - name: Make nexus user owner of sonatype-work folder
     file:
       path: /opt/sonatype-work
       state: directory
       owner: nexus
+      group: nexus
       recurse: yes
