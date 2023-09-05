@@ -1,7 +1,10 @@
 --- 
-- hosts: nexus_server
+- name: Install java and net-tools
+  hosts: nexus_server
   become: yes
   tasks:
+  - name: Update apt repo and cache 
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   - name: Install java and net-tools
     apt: name=openjdk-8-jre-headless
   - name: Install net-tools
@@ -16,4 +19,4 @@
       url: https://download.sonatype.com/nexus/3/nexus-3.41.1-01-unix.tar.gz
       dest: /opt/
     register: download_result
-  debug: msg={{download_result}}
+  - debug: msg={{download_result}}
