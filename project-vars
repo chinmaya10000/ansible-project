@@ -1,0 +1,4 @@
+version: 1.0.0
+location: /home/chinu/ansible-project/simple-nodejs
+linux_name: chinu
+home_home_dir: /home/{{chinu}}

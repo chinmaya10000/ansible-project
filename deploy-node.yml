@@ -14,18 +14,20 @@
 - name: Deploy nodejs app 
   hosts: 172.31.5.12
   become: true
-  become_user: chinu
+  become_user: "{{linux_name}}"
+  vars_files:
+  - project-vars
   tasks: 
   - name: Unpack the nodejs file
     unarchive:
-     src: /home/chinu/ansible-project/simple-nodejs/nodejs-app-1.0.0.tgz
-     dest: /home/chinu
+     src: "{{location}}/nodejs-app-{{version}}.tgz"
+     dest: "{{home_home_dir}}"
   - name: Install Dependencies
     npm:
-     path: /home/chinu/package
+     path: "{{home_home_dir}}/package"
   - name: Start the application
     command:
-     chdir: /home/chinu/package/app
+     chdir: "{{home_home_dir}}/package/app"
      cmd: node server
     async: 1000
     poll: 0
