@@ -36,5 +36,6 @@
     register: app_status
   - debug: msg={{app_status.stdout_lines}}
   
+  
      
   
