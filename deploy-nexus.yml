@@ -19,4 +19,9 @@
       url: https://download.sonatype.com/nexus/3/nexus-3.41.1-01-unix.tar.gz
       dest: /opt/
     register: download_result
-  - debug: msg={{download_result}}
+  #- debug: msg={{download_result}}
+  - name: Untar Nexus Installer
+    unarchive:
+      src: "{{download_result.dest}}"
+      dest: /opt/
+      remote_src: yes
