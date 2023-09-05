@@ -40,3 +40,28 @@
   - name: Rename Nexus folder
     shell: mv {{find_result.files[0].path}} /opt/nexus
     when: not stat_result.stat.exists
+
+- name: Create Nexus user to own nexus folder
+  hosts: nexus_server
+  become: yes
+  tasks:
+  - name: Ensure group nexus exists 
+    group:
+      name: nexus
+      state: present 
+  - name: Create nexus user 
+    user:
+      name: nexus
+      group: nexus
+  - name: Make nexus user owner of nexus folder
+    file: 
+      path: /opt/nexus
+      state: directory
+      owner: nexus
+      recurse: yes
+  - name: Make nexus user owner of sonatype-work folder
+    file:
+      path: /opt/sonatype-work
+      state: directory
+      owner: nexus
+      recurse: yes
