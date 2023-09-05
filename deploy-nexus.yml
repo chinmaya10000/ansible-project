@@ -1,0 +1,19 @@
+--- 
+- hosts: nexus_server
+  become: yes
+  tasks:
+  - name: Install java and net-tools
+    apt: name=openjdk-8-jre-headless
+  - name: Install net-tools
+    apt: name=net-tools
+
+- name: Download and Unpack Nexus folder
+  hosts: nexus_server
+  become: yes
+  tasks: 
+  - name: Download Nexus
+    get_url:
+      url: https://download.sonatype.com/nexus/3/nexus-3.41.1-01-unix.tar.gz
+      dest: /opt/
+    register: download_result
+  debug: msg={{download_result}}
