@@ -38,18 +38,14 @@
       name: chinu
       groups: docker
       append: yes
-- name: Log out and log back in as chinu
+- name: Restart SSH service
   hosts: docker_server
   become: yes
-  become_user: chinu
   tasks:
-  - name: Log out
-    ansible.builtin.command: logout
-    async: 0
-    poll: 0
-
-  - name: Log back in
-    ansible.builtin.shell: /bin/bash
+    - name: Restart SSH service
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
 
 - name: Test docker pull 
   hosts: docker_server 
