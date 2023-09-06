@@ -15,7 +15,7 @@
   tasks:
   - name: Install libcrypt.so.1 library
     ansible.builtin.package:
-      name: libcrypt1  # Adjust the package name for your distribution
+      name: glibc-crypt  # Adjust the package name for your distribution
       state: present
   - name: Install Docker-compose
     ansible.builtin.get_url:
