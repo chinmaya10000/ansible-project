@@ -29,6 +29,10 @@
     ansible.builtin.systemd:
       name: docker
       state: started
+  - name: Install pip3
+    ansible.builtin.package:
+      name: python3-pip
+      state: present
   - name: Install Docker Python library
     ansible.builtin.pip:
       name: docker
