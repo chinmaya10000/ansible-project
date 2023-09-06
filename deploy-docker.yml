@@ -29,6 +29,10 @@
     ansible.builtin.systemd:
       name: docker
       state: started
+  - name: Install Docker Python library
+    ansible.builtin.pip:
+      name: docker
+      state: present
 
 - name: Add user to docker group 
   hosts: docker_server
