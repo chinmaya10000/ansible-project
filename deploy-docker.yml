@@ -57,7 +57,7 @@
 
 - name: Start Docker Container
   hosts: docker_server
-  vars_file:
+  vars_files:
   - project-vars 
   tasks:
   - name: Copy Docker compose 
