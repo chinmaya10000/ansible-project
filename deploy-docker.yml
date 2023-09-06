@@ -44,7 +44,7 @@
   tasks:
     - name: Restart SSH service
       ansible.builtin.service:
-        name: ssh
+        name: sshd
         state: restarted
 
 - name: Test docker pull 
