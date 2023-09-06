@@ -1,5 +1,5 @@
 --- 
-- name: Intsall Docker
+- name: Intsall Docker and docker-compose
   hosts: docker_server
   become: yes
   tasks:
@@ -8,25 +8,42 @@
       name: docker
       update_cache: yes
       state: present
+  - name: Install Docker Compose
+    shell: |
+      curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
+      chmod +x /usr/local/bin/docker-compose
+    args:
+      creates: /usr/local/bin/docker-compose
 
-- name: Install Docker Compose on Amazon Linux 2023
+  - name: Check Docker Compose version
+    command: "docker-compose --version"
+    register: compose_version
+    changed_when: false
+    failed_when: false
+
+  - name: Print Docker Compose version
+    debug:
+      var: compose_version.stdout_lines
+  - name: start Docker 
+    ansible.builtin.systemd:
+      name: docker
+      state: started
+
+- name: Add user to docker group 
   hosts: docker_server
   become: yes
   tasks:
-    - name: Install Docker Compose
-      shell: |
-        curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
-        chmod +x /usr/local/bin/docker-compose
-      args:
-        creates: /usr/local/bin/docker-compose
+  - name: Add chinu to docker group 
+    ansible.builtin.user:
+      name: chinu
+      groups: docker
+      append: yes
+  - name: Reconnect to server session
+    ansible.builtin.meta: reset_connection
 
-    - name: Check Docker Compose version
-      command: "docker-compose --version"
-      register: compose_version
-      changed_when: false
-      failed_when: false
-
-    - name: Print Docker Compose version
-      debug:
-        var: compose_version.stdout_lines
+- name: Test docker pull 
+  hosts: docker_server 
+  tasks:
+  - name: Pull Redis
+    ansible.builtin.command: docker pull redis
 
