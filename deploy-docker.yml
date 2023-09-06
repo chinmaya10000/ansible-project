@@ -13,6 +13,10 @@
   hosts: docker_server
   become: yes
   tasks:
+  - name: Install libcrypt.so.1 library
+    ansible.builtin.package:
+      name: libcrypt1  # Adjust the package name for your distribution
+      state: present
   - name: Install Docker-compose
     ansible.builtin.get_url:
       url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
