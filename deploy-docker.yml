@@ -8,3 +8,13 @@
       name: docker
       update_cache: yes
       state: present
+
+- name: Install Docker-compose
+  hosts: docker_server
+  become: yes
+  tasks:
+  - name: Install Docker-compose
+    ansible.builtin.get_url:
+      url: https://github.com/docker/compose/releases/latest/download/docker-compose-{{lookup('pipe', 'uname -m')}}
+      dest: /usr/local/bin/docker-compose
+      mode: +x
