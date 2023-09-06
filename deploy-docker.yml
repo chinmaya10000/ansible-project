@@ -69,6 +69,7 @@
 
 - name: Start Docker Containers
   hosts: docker_server
+  become: yes
   become_user: chinu 
   vars_files:
   - project-vars 
