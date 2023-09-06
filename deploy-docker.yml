@@ -8,29 +8,3 @@
       name: docker
       update_cache: yes
       state: present
-
-- name: Install Docker Compose
-  hosts: docker_server
-  become: yes
-  tasks:
-    - name: Install required packages
-      ansible.builtin.yum:
-        name:
-          - python3-pip
-          - python3-setuptools
-        state: present
-
-    - name: Install Docker Compose
-      command: pip3 install docker-compose
-      args:
-        creates: /usr/local/bin/docker-compose
-    - name: Ensure /usr/local/bin directory exists
-      ansible.builtin.file:
-        path: /usr/local/bin
-        state: directory
-        mode: '0755'
-
-    - name: Add /usr/local/bin to system PATH
-      lineinfile:
-        path: /etc/environment
-        line: 'PATH="/usr/local/bin:$PATH"'
