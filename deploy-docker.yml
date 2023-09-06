@@ -47,10 +47,26 @@
         name: sshd
         state: restarted
 
-- name: Test docker pull 
-  hosts: docker_server 
+#- name: Test docker pull 
+  #hosts: docker_server 
+  #tasks:
+  #- name: Pull Alpine
+    #community.docker.docker_image:
+      #name: alpine
+      #source: pull
+
+- name: Start Docker Container
+  hosts: docker_server
+  vars_prompt:
+  - name: docker_password
+    prompt: Enter password for docker registry 
   tasks:
-  - name: Pull Redis
-    community.docker.docker_image:
-      name: alpine
-      source: pull
+  - name: Copy Docker compose 
+    ansible.builtin.copy:
+      src: /home/chinu/ansible-project/maven-war-project/docker-compose.yml
+      dest: /home/chinu/docker-compose.yml
+  - name: Docker Login
+    community.docker.docker_login:
+      registry_url: https://index.docker.io/v1/
+      username: chinmayapradhan
+      password: "{{docker_password}}"
