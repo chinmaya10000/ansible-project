@@ -42,7 +42,7 @@
   hosts: docker_server
   become: yes
   tasks:
-    - name: Restart SSH service
+    - name: Restart SSHD service
       ansible.builtin.service:
         name: sshd
         state: restarted
@@ -52,5 +52,5 @@
   tasks:
   - name: Pull Redis
     community.docker.docker_image:
-      name: redis 
+      name: alpine
       source: pull
