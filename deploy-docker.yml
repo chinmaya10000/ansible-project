@@ -67,8 +67,9 @@
       #name: alpine
       #source: pull
 
-- name: Start Docker Container
+- name: Start Docker Containers
   hosts: docker_server
+  become_user: chinu 
   vars_files:
   - project-vars 
   tasks:
