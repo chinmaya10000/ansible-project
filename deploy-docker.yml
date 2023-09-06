@@ -13,6 +13,11 @@
   hosts: docker_server
   become: yes
   tasks:
+  - name: Install glibc package (Amazon Linux)
+    ansible.builtin.package:
+      name: glibc
+      state: present
+    when: ansible_os_family == 'RedHat'
   - name: Install Docker-compose
     ansible.builtin.get_url:
       url: https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-linux-x86_64 
