@@ -34,7 +34,3 @@
       lineinfile:
         path: /etc/environment
         line: 'PATH="/usr/local/bin:$PATH"'
-
-    - name: Reload systemd manager configuration
-      ansible.builtin.command: systemctl daemon-reload
-      become: yes
