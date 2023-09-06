@@ -69,3 +69,6 @@
       registry_url: https://index.docker.io/v1/
       username: chinmayapradhan
       password: "{{docker_password}}"
+  - name: Start container from compose 
+    community.docker.docker_compose:
+      project_src: /home/chinu
