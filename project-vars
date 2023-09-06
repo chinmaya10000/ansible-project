@@ -4,4 +4,4 @@ linux_name: chinu
 user_home_dir: /home/{{linux_name}}
 
 
-docker_password: chinu@2242
+docker_password: xxxxxx
