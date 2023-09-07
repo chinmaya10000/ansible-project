@@ -56,8 +56,15 @@
       name: chinu
       groups: docker
       append: yes
-  - name: Reconnect to server session
-    ansible.builtin.meta: reset_connection
+
+- name: Restart SSH service
+  hosts: docker_server
+  become: yes
+  tasks:
+    - name: Restart SSHD service
+      ansible.builtin.service:
+        name: sshd
+        state: restarted 
 
 
 - name: Test docker pull 
