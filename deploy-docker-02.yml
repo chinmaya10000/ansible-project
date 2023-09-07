@@ -46,7 +46,34 @@
       name:
         - docker
         - docker-compose
+  
+- name: Add user to docker group 
+  hosts: docker_server
+  become: yes
+  tasks:
+  - name: add chinu to docker group
+    ansible.builtin.user:
+      name: chinu
+      group: docker
+      append: yes
+    
+- name: Restart SSH service 
+  hosts: docker_server
+  become: yes
+  tasks:
+  - name: Restart sshd service 
+    ansible.builtin.service:
+        name: sshd
+        state: restarted
 
+- name: Test docker pull 
+  hosts: docker_server
+  become: yes
+  tasks:
+  - name: pull alpine
+    community.docker.docker_image:
+      name: alpine
+      source: pull
 
 
 
