@@ -75,7 +75,14 @@
     ansible.builtin.copy:
       src: /home/chinu/ansible-project/maven-war-project/docker-compose.yml
       dest: /home/chinu/docker-compose.yml
-
+  - name: docker Login
+    community.docker.docker_login:
+      registry_url: https://index.docker.io/v1/
+      username: chinmayapradhan
+      password: "{{docker_password}}"
+  - name: Start container from compose 
+    community.docker.docker_compose:
+      project_src: /home/chinu
 
 
 
