@@ -12,7 +12,11 @@
         - python3 
         - docker 
       update_cache: yes
-      state: present 
+      state: present
+  - name: Create /usr/local/bin directory
+    ansible.builtin.file:
+      path: /usr/local/bin
+      state: directory
   - name: Install Docker Compose
     shell: |
       curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
