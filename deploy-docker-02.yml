@@ -19,3 +19,12 @@
       chmod +x /usr/local/bin/docker-compose
     args:
       creates: /usr/local/bin/docker-compose
+  - name: Check Docker Compose version
+    command: "docker-compose --version"
+    register: compose_version
+    changed_when: false
+    failed_when: false
+
+  - name: Print Docker Compose version
+    debug:
+      var: compose_version.stdout_lines 
