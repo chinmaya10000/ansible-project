@@ -66,17 +66,16 @@
         name: sshd
         state: restarted 
 
-
-- name: Test docker pull 
+- name: Start Docker container
   hosts: docker_server
   become: yes
+  become_user: chinu
   tasks:
-  - name: pull alpine
-    community.docker.docker_image:
-      name: alpine
-      source: pull
-    vars:
-      ansible_python_interpreter: /usr/bin/python
+  - name: Copy Docker compose
+    ansible.builtin.copy:
+      src: /home/chinu/ansible-project/maven-war-project/docker-compose.yml
+      dest: /home/chinu/docker-compose.yml
+
 
 
 
