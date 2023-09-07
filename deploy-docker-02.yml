@@ -54,7 +54,7 @@
   - name: add chinu to docker group
     ansible.builtin.user:
       name: chinu
-      group: docker
+      groups: docker
       append: yes
     
 - name: Restart SSH service 
