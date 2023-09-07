@@ -87,6 +87,8 @@
   - name: Start container from compose 
     community.docker.docker_compose:
       project_src: /home/chinu
+    vars:
+      ansible_python_interpreter: /usr/bin/python
 
 
 
