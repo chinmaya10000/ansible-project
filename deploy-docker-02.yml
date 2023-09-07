@@ -88,7 +88,7 @@
     community.docker.docker_compose:
       project_src: /home/chinu
     vars:
-      ansible_python_interpreter: /usr/bin/python
+      ansible_python_interpreter: /usr/bin/python3
 
 
 
