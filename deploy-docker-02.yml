@@ -28,6 +28,5 @@
 
   - name: Print Docker Compose version
     debug:
-      var: compose_version.stdout_lines
-  - name: start Docker 
+      var: compose_version.stdout_lines 
 
