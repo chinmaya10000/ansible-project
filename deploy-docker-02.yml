@@ -15,7 +15,12 @@
       state: present 
   - name: Install Docker-compose
     get_url: 
-      url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{lookup('pipe', 'uname -m')}}
+      url: https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-x86_64
       dest: /usr/local/bin/docker-compose
       mode: +x
+  - name: Add /usr/local/bin to PATH
+    ansible.builtin.lineinfile:
+      path: ~/.bashrc  # You can change this to the appropriate shell profile file if needed
+      line: 'export PATH="/usr/local/bin:$PATH"'
+      create: yes
 
