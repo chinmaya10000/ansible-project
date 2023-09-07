@@ -83,7 +83,7 @@
       username: chinmayapradhan
       password: "{{docker_password}}"
     vars:
-      ansible_python_interpreter: /usr/bin/python
+      ansible_python_interpreter: /usr/bin/python3
   - name: Start container from compose 
     community.docker.docker_compose:
       project_src: /home/chinu
