@@ -82,6 +82,8 @@
       registry_url: https://index.docker.io/v1/
       username: chinmayapradhan
       password: "{{docker_password}}"
+    vars:
+      ansible_python_interpreter: /usr/bin/python
   - name: Start container from compose 
     community.docker.docker_compose:
       project_src: /home/chinu
